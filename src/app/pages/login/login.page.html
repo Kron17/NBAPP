@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <img alt="Silhouette of mountains" src="https://phantom-marca.unidadeditorial.es/76cf88488807f5e6fed43d4705c9859f/resize/828/f/jpg/assets/multimedia/imagenes/2022/02/02/16437899001758.jpg" />
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+      <ion-card-subtitle>Ingrese sus datos</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-input type="email" errorText="Usuario invalido" 
+          label="Usuario" labelPlacement="floating" placeholder="Ej: duoc"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password"
+          label="Contraseña" labelPlacement="floating" placeholder="Ingrese contraseña"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="centrado">
+        <ion-button color="success" (click)="login()">Ingresar</ion-button>
+        <ion-button >Registrar</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
