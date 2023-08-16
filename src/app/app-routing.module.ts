@@ -30,7 +30,27 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'fichaje',
+    loadChildren: () => import('./pages/fichaje/fichaje.module').then( m => m.FichajePageModule)
+  },
+  {
+    path: 'campeon',
+    loadChildren: () => import('./pages/campeon/campeon.module').then( m => m.CampeonPageModule)
+  },
+  {
+    path: 'estadisticas',
+    loadChildren: () => import('./pages/estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
+  },
+  {
+    path: 'detalle',
+    loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
   }
+
 ];
 
 @NgModule({
