@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JugadoresService } from 'src/app/services/jugadores.service';
+import { Jugador } from './jugadores.model';
 
 @Component({
   selector: 'app-jugadores',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JugadoresPage implements OnInit {
 
-  constructor() { }
+  listaJugadores: Jugador[] = [];
+
+  constructor(private jugadoresService: JugadoresService) { }
 
   ngOnInit() {
+    this.listaJugadores = this.jugadoresService.getAll()
   }
 
 }
