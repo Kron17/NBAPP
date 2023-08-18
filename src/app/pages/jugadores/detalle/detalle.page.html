@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/login"></ion-back-button>
     </ion-buttons>
     <ion-title>detalle</ion-title>
   </ion-toolbar>
@@ -19,6 +19,8 @@
       {{ jugador.descripcion }}
     </ion-card-content>
   
-    <ion-button class="btnVerMas" [routerLink]="['/detalle']" size="full" shape="round">Ver más...</ion-button>
+    <div class="centrado">
+      <ion-button class="btnVerMas" [routerLink]="['/detalle']" shape="round">Ver más...</ion-button>
+    </div>
   </ion-card>
 </ion-content>
