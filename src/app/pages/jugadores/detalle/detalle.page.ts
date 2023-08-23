@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JugadoresService } from 'src/app/services/jugadores.service';
 import { Jugador } from '../jugadores.model';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle',
@@ -11,7 +12,7 @@ import { Jugador } from '../jugadores.model';
 export class DetallePage implements OnInit {
 
   jugador!: Jugador;
-  constructor(private jugadorService: JugadoresService, private activatedRoute: ActivatedRoute) { }
+  constructor(private router:Router, private toastController:ToastController, private alertController:AlertController ,private jugadorService: JugadoresService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(param => {
@@ -20,6 +21,44 @@ export class DetallePage implements OnInit {
         this.jugador = this.jugadorService.getJugador(aux)
       }
     })
+  }
+
+  //METODO QUE MUSTRA MENSAJES EN PANTALLA
+  async mensajeToast(mensaje: string){  
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'bottom',
+    })
+    toast.present()
+  }
+
+  async deleteJugador() {
+    //this.mensajeToast("JUGADOR ELIMINADO!");
+    const alerta = await this.alertController.create({
+      header: 'Eliminar el jugador',
+      message: 'Estás seguro que desea eliminar el jugador?',
+      buttons: [
+        {
+          text: 'Eliminar',
+          handler: () => {
+            if (this.jugador && this.jugador.id !== undefined){
+              this.jugadorService.deleteJugador(this.jugador.id);
+              this.router.navigate(['/jugadores']);
+              this.mensajeToast("Jugador Eliminado!");
+            }
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            this.mensajeToast("Acción cancelada!");
+          }
+        },
+      ]
+    });
+    await alerta.present();
+    let resultado = await alerta.onDidDismiss();
   }
 
 }
