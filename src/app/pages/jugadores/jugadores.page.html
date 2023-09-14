@@ -8,10 +8,12 @@
       <ion-icon name="refresh" (click)="listar()"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionChange)="buscarJugador($event)" animated="true" placeholder=""></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar (ionChange)="buscarJugador($event)" animated="true" placeholder=""></ion-searchbar>
 
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -20,13 +22,13 @@
   <ion-list>
     <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
       <ion-item *ngFor="let aux of listaJugadores" [routerLink]="['/jugadores/', aux.id]">
-        <ion-avatar>
+        <ion-avatar slot="start">
           <ion-img [src]="aux.imagen"></ion-img>
         </ion-avatar>
         <ion-label>{{ aux.nombre }} </ion-label>
         <ion-reorder slot="end"></ion-reorder>
       </ion-item>
-  </ion-reorder-group>
+    </ion-reorder-group>
   </ion-list>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
